@@ -6,6 +6,8 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -14,13 +16,42 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-    alert('Thank you for your message! I\'ll get back to you soon.');
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Simulate form submission (replace with actual API call)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
+      
+      // Here you would typically send data to your backend
+      console.log('Form submitted:', formData);
+      
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      
+      // Show success message for 3 seconds
+      setTimeout(() => setSubmitStatus(null), 3000);
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleResumeDownload = () => {
+    // Track download analytics if needed
+    console.log('Resume downloaded');
+    
+    // Create a temporary link and trigger download
+    const link = document.createElement('a');
+    link.href = '/Akshay_Kumar_Resume.pdf';
+    link.download = 'Akshay_Kumar_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const contactInfo = [
@@ -33,7 +64,8 @@ const Contact = () => {
       label: 'Email',
       value: 'akshay.kumar_cs22@gla.ac.in',
       link: 'mailto:akshay.kumar_cs22@gla.ac.in',
-      color: 'from-blue-500 to-blue-600'
+      color: 'from-blue-500 to-blue-600',
+      description: 'Drop me a line anytime'
     },
     {
       icon: (
@@ -44,7 +76,8 @@ const Contact = () => {
       label: 'Phone',
       value: '+91 6394330610',
       link: 'tel:+916394330610',
-      color: 'from-green-500 to-green-600'
+      color: 'from-green-500 to-green-600',
+      description: 'Call for urgent matters'
     },
     {
       icon: (
@@ -56,7 +89,8 @@ const Contact = () => {
       label: 'Location',
       value: 'Jhansi, Uttar Pradesh',
       link: null,
-      color: 'from-purple-500 to-purple-600'
+      color: 'from-purple-500 to-purple-600',
+      description: 'Available for remote work'
     }
   ];
 
@@ -70,7 +104,8 @@ const Contact = () => {
         </svg>
       ),
       color: 'hover:bg-gray-900',
-      textColor: 'hover:text-white'
+      textColor: 'hover:text-white',
+      followers: '50+ repos'
     },
     {
       name: 'LinkedIn',
@@ -81,7 +116,8 @@ const Contact = () => {
         </svg>
       ),
       color: 'hover:bg-blue-600',
-      textColor: 'hover:text-white'
+      textColor: 'hover:text-white',
+      followers: 'Professional Network'
     },
     {
       name: 'Email',
@@ -92,49 +128,51 @@ const Contact = () => {
         </svg>
       ),
       color: 'hover:bg-red-600',
-      textColor: 'hover:text-white'
+      textColor: 'hover:text-white',
+      followers: 'Quick Contact'
     }
   ];
 
   return (
     <section id="contact" className="section-padding bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
-      {/* Background Effects */}
+      {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-subtle-float"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-subtle-float animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-pulse animation-delay-4000"></div>
       </div>
 
       <div className="container-max relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <div className="inline-block mb-4">
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent text-sm font-semibold tracking-wide uppercase">
               Let's Connect
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
             Get In <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
             I'm always open to discussing new opportunities, exciting projects, or just having a chat about technology and innovation.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="text-center lg:text-left">
-              <h3 className="text-3xl font-bold text-white mb-8 flex items-center justify-center lg:justify-start">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center justify-center lg:justify-start">
                 <span className="mr-3">📞</span>
                 Contact Information
               </h3>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <div key={index} className="group">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 border border-white/20">
-                    <div className="flex items-center space-x-6">
-                      <div className={`p-4 bg-gradient-to-r ${info.color} rounded-xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 border border-white/20 hover-lift">
+                    <div className="flex items-center space-x-4">
+                      <div className={`p-3 bg-gradient-to-r ${info.color} rounded-lg text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                         {info.icon}
                       </div>
                       <div className="flex-1">
@@ -142,13 +180,14 @@ const Contact = () => {
                         {info.link ? (
                           <a
                             href={info.link}
-                            className="text-white hover:text-blue-400 transition-colors duration-200 text-lg font-medium"
+                            className="text-white hover:text-blue-400 transition-colors duration-200 text-base font-medium block"
                           >
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-white text-lg font-medium">{info.value}</p>
+                          <p className="text-white text-base font-medium">{info.value}</p>
                         )}
+                        <p className="text-xs text-gray-400 mt-1">{info.description}</p>
                       </div>
                     </div>
                   </div>
@@ -157,8 +196,8 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-            <div className="mt-12">
-              <h4 className="text-xl font-bold text-white mb-6 text-center lg:text-left">Connect With Me</h4>
+            <div className="mt-8">
+              <h4 className="text-xl font-bold text-white mb-4 text-center lg:text-left">Connect With Me</h4>
               <div className="flex justify-center lg:justify-start space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
@@ -166,8 +205,8 @@ const Contact = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group p-4 bg-white/10 backdrop-blur-sm rounded-xl ${social.color} ${social.textColor} transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 border border-white/20`}
-                    title={social.name}
+                    className={`group p-3 bg-white/10 backdrop-blur-sm rounded-lg ${social.color} ${social.textColor} transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 border border-white/20 hover-lift`}
+                    title={`${social.name} - ${social.followers}`}
                   >
                     <div className="text-gray-300 group-hover:text-white transition-colors duration-300">
                       {social.icon}
@@ -177,38 +216,47 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Resume Download */}
-            <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-2xl p-8 border border-blue-400/30">
+            {/* Enhanced Resume Download */}
+            <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-xl p-6 border border-blue-400/30 hover-lift">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl transform hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4 text-2xl transform hover:scale-110 transition-transform duration-300">
                   📄
                 </div>
-                <h4 className="text-xl font-bold text-white mb-3">Download Resume</h4>
-                <p className="text-gray-300 mb-6">Get a detailed overview of my experience and skills.</p>
-                <a
-                  href="/resume.pdf"
-                  download
-                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                <h4 className="text-xl font-bold text-white mb-2">Download Resume</h4>
+                <p className="text-gray-300 mb-4 text-sm">Get a detailed overview of my experience, skills, and achievements.</p>
+                
+                {/* Resume Stats */}
+                <div className="flex justify-center space-x-4 mb-4 text-xs text-gray-400">
+                  <span>• 3+ Years Experience</span>
+                  <span>• 5+ Projects</span>
+                  <span>• Full Stack</span>
+                </div>
+                
+                <button
+                  onClick={handleResumeDownload}
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   <span>Download Resume</span>
-                </a>
+                </button>
+                
+                <p className="text-xs text-gray-500 mt-2">PDF • 620KB • Updated Recently</p>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 shadow-2xl">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-white mb-4">Send Me a Message</h3>
+          {/* Enhanced Contact Form */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-white mb-3">Send Me a Message</h3>
               <p className="text-gray-300">Let's discuss your next project or opportunity</p>
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-3">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                   Your Name
                 </label>
                 <input
@@ -218,13 +266,14 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-4 bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 disabled:opacity-50"
                   placeholder="Enter your name"
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-3">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                   Email Address
                 </label>
                 <input
@@ -234,13 +283,14 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-4 bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 disabled:opacity-50"
                   placeholder="Enter your email"
                 />
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-3">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                   Message
                 </label>
                 <textarea
@@ -249,23 +299,50 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={6}
-                  className="w-full px-4 py-4 bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                  disabled={isSubmitting}
+                  rows={5}
+                  className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none disabled:opacity-50"
                   placeholder="Tell me about your project or just say hello!"
                 />
               </div>
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 <span className="flex items-center justify-center">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                      Send Message
+                    </>
+                  )}
                 </span>
               </button>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="bg-green-500/20 border border-green-400/30 rounded-lg p-4 text-green-300 text-sm text-center">
+                  ✅ Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="bg-red-500/20 border border-red-400/30 rounded-lg p-4 text-red-300 text-sm text-center">
+                  ❌ Something went wrong. Please try again or contact me directly.
+                </div>
+              )}
             </form>
           </div>
         </div>
