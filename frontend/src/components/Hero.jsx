@@ -178,19 +178,19 @@ const Hero = () => {
                 <div className="absolute -top-8 -right-8 bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 animate-slide-in-right animation-delay-2000 hover-lift">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-white flex items-center justify-center space-x-1">
-                      <span>3+</span>
+                      <span></span>
                       <svg className="w-5 h-5 text-blue-400 animate-professional-bounce" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <div className="text-xs text-gray-300">Years Experience</div>
+                    <div className="text-xs text-gray-300">Fresher</div>
                   </div>
                 </div>
 
                 <div className="absolute top-1/2 -right-14 bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 transform -translate-y-1/2 animate-fade-in-up animation-delay-2500 hover-lift">
                   <div className="text-center">
                     <div className="text-xl font-bold text-white flex items-center justify-center space-x-1">
-                      <span>400+</span>
+                      <span>500+</span>
                       <svg className="w-4 h-4 text-yellow-400 animate-gentle-pulse" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                       </svg>
