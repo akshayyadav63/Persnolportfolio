@@ -34,7 +34,7 @@ const Hero = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-slide-in-left animation-delay-700">
                 Hi, I'm{' '}
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-gradient-shift">
-                  Akshay Yadav
+                  Akshay Kumar
                 </span>
               </h1>
               
