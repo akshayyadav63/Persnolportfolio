@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   html {
@@ -23,7 +21,7 @@
   }
   
   .section-padding {
-    @apply py-20 px-4 sm:px-6 lg:px-8;
+    @apply py-16 px-4 sm:px-6 lg:px-8;
   }
   
   .container-max {
@@ -37,6 +35,13 @@
   }
 
   /* Line Clamp */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
   .line-clamp-3 {
     overflow: hidden;
     display: -webkit-box;
@@ -46,7 +51,7 @@
 }
 
 @layer utilities {
-  /* Professional Animations - Subtle and Clean */
+  /* Professional Animations - Optimized for performance */
   @keyframes subtle-float {
     0%, 100% {
       transform: translateY(0px);
@@ -86,7 +91,7 @@
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
@@ -97,7 +102,7 @@
   @keyframes slideInLeft {
     from {
       opacity: 0;
-      transform: translateX(-20px);
+      transform: translateX(-30px);
     }
     to {
       opacity: 1;
@@ -108,7 +113,7 @@
   @keyframes slideInRight {
     from {
       opacity: 0;
-      transform: translateX(20px);
+      transform: translateX(30px);
     }
     to {
       opacity: 1;
@@ -143,7 +148,22 @@
     }
   }
 
-  /* Professional Utility Classes */
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  /* Animation Classes */
   .animate-subtle-float {
     animation: subtle-float 6s ease-in-out infinite;
   }
@@ -162,15 +182,15 @@
   }
 
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.8s ease-out;
   }
 
   .animate-slide-in-left {
-    animation: slideInLeft 0.6s ease-out;
+    animation: slideInLeft 0.8s ease-out;
   }
 
   .animate-slide-in-right {
-    animation: slideInRight 0.6s ease-out;
+    animation: slideInRight 0.8s ease-out;
   }
 
   .animate-professional-bounce {
@@ -183,8 +203,40 @@
     background-size: 200% 100%;
   }
 
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .animation-delay-1200 {
+    animation-delay: 1.2s;
+  }
+
+  .animation-delay-1500 {
+    animation-delay: 1.5s;
+  }
+
+  .animation-delay-1800 {
+    animation-delay: 1.8s;
+  }
+
   .animation-delay-2000 {
     animation-delay: 2s;
+  }
+
+  .animation-delay-2500 {
+    animation-delay: 2.5s;
+  }
+
+  .animation-delay-3000 {
+    animation-delay: 3s;
   }
 
   .animation-delay-4000 {
@@ -303,7 +355,7 @@
   }
 }
 
-/* Professional Dark Mode Support */
+/* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
   .dark\:bg-dark {
     background-color: #0f172a;
@@ -326,8 +378,12 @@
   }
 }
 
-/* Mobile Optimizations */
+/* Enhanced Mobile Optimizations */
 @media (max-width: 640px) {
+  .section-padding {
+    @apply py-12 px-4;
+  }
+  
   .mobile-padding {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -336,6 +392,45 @@
   .mobile-text {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  /* Optimize hero for mobile */
+  .hero-mobile-optimize {
+    min-height: 80vh;
+  }
+
+  /* Better touch targets */
+  .mobile-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Optimize font sizes for mobile readability */
+  .mobile-heading-xl {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .mobile-heading-lg {
+    font-size: 1.875rem;
+    line-height: 1.2;
+  }
+
+  .mobile-heading-md {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tablet-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
@@ -355,6 +450,11 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Keep essential animations for UX */
+  .essential-animation {
+    animation-duration: 0.3s !important;
   }
 }
 
@@ -383,4 +483,51 @@
 
 .border-professional-hover:hover {
   border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Enhanced Focus States for Accessibility */
+.focus-visible-ring:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Better form styling */
+.form-input {
+  @apply w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+}
+
+.form-textarea {
+  @apply w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none;
+}
+
+/* Loading spinner for better UX */
+.loading-spinner {
+  border: 2px solid #f3f4f6;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Improved error and success states */
+.state-success {
+  @apply bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg;
+}
+
+.state-error {
+  @apply bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg;
+}
+
+.state-warning {
+  @apply bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded-lg;
+}
+
+.state-info {
+  @apply bg-blue-50 border border-blue-200 text-blue-800 px-4 py-3 rounded-lg;
 }
