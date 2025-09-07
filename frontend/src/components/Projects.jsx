@@ -39,7 +39,7 @@ const Projects = () => {
       technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.io', 'JWT', 'Real-time Notifications'],
       githubLink: 'https://github.com/akshayyadav63/Innovative_Incubators_advitiyaXjpd',
       liveLink: '#',
-      period: 'September 2024 – Present',
+      period: 'December 2024 – Present',
       gradient: 'from-orange-600 to-red-600',
       image: 'https://cdn.builder.io/api/v1/image/assets%2Fa1ebc5b67aec4d009962145ee3462ec2%2F2e5b941b34854f6793aa22e51d6c497d?format=webp&width=800',
       category: 'Platform'
